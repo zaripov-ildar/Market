@@ -22,7 +22,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Product findProductById(@PathVariable long id) {
-        return productService.findById(id).get();
+        return productService.findById(id).orElseThrow(()->new RuntimeException(String.format("Product #%d not found", id)));
     }
 
     @DeleteMapping("/{id}")
@@ -32,7 +32,7 @@ public class ProductController {
 
     @PostMapping("/add/{id}")
     public Cart addToCart(@PathVariable long id){
-        cart.addProduct(productService.findById(id).orElseThrow(()->new RuntimeException(String.format("Product #%d ", id))));
+        cart.addProduct(productService.findById(id).orElseThrow(()->new RuntimeException(String.format("Product #%d not found", id))));
         return cart;
     }
 }
