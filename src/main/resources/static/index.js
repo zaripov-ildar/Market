@@ -1,25 +1,51 @@
 angular.module('app', []).controller('indexController', function ($scope, $http) {
-    $scope.path = 'http://localhost:8189/market/api/v1/products'
+    $scope.path = 'http://localhost:8189/market/api/v1'
 
     $scope.loadProducts = function () {
-        $http.get($scope.path)
+        $http.get($scope.path + '/products')
             .then(function (response) {
                 $scope.productList = response.data;
             });
     };
-
-    $scope.addProduct = function (productId) {
-        $http.post($scope.path + "/add/" + productId)
-            .then(function (response) {
-                $scope.cart = response.data["products"];
-            })
-    };
-
     $scope.deleteProductById = function (productId) {
-        $http.delete($scope.path + "/" + productId)
+        $http.delete($scope.path + "/products/" + productId)
             .then(function () {
                 $scope.loadProducts();
             })
     };
+
+    $scope.loadCart = function () {
+        $http.get($scope.path + '/cart')
+            .then(function (response) {
+                $scope.cart = response.data;
+            })
+    }
+
+    $scope.changeAmount = function (productId, delta) {
+        $http({
+            url: $scope.path + "/cart/changeAmount",
+            method: "GET",
+            params:{
+                productId:productId,
+                delta: delta
+            }
+        }).then(function () {
+            $scope.loadCart();
+        })
+    };
+    $scope.deleteFromCartById = function (productId) {
+        $http.get($scope.path + "/cart/delete/" + productId)
+            .then(function () {
+                $scope.loadCart();
+            })
+    };
+    $scope.clearCart = function (){
+        $http.get($scope.path + "/cart/clear")
+            .then(function (){
+                $scope.loadCart();
+            })
+    }
+
     $scope.loadProducts();
+    $scope.loadCart()
 })

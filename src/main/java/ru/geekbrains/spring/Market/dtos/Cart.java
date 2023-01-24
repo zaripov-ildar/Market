@@ -1,24 +1,55 @@
 package ru.geekbrains.spring.Market.dtos;
 
-import org.springframework.stereotype.Component;
+import lombok.Data;
 import ru.geekbrains.spring.Market.entities.Product;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-@Component
+@Data
 public class Cart {
-    private final List<Product> products;
+
+    private Map<Long, CartItem> map;
+    private int totalPrice;
 
     public Cart() {
-        this.products = new ArrayList<>();
+        map = new HashMap<>();
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public void changeAmount(Product product, int i) {
+        long id = product.getId();
+        addToCart(product, i, id);
+        deleteIfAmountLessOrEqualZero(id);
+        recalculate();
     }
 
-    public List<Product> getProducts() {
-        return products;
+    private void addToCart(Product product, int i, long id) {
+        if (!map.containsKey(id)) {
+            map.put(id, new CartItem(id, product.getTitle(), 1, product.getPrice(), product.getPrice()));
+        } else {
+            map.get(id).changeAmount(i);
+        }
+    }
+
+    private void deleteIfAmountLessOrEqualZero(long id) {
+        if (map.get(id).getQuantity() <= 0) {
+            map.remove(id);
+        }
+    }
+
+    private void recalculate() {
+        totalPrice = 0;
+        map.values().forEach(i -> totalPrice += i.getPrice());
+    }
+
+    public List<CartItem> getCartItems() {
+        return map.values().stream().toList();
+    }
+
+    public void delete(Long id) {
+        map.remove(id);
+    }
+
+    public void clear() {
+        map.clear();
     }
 }
