@@ -21,4 +21,6 @@ spring:
 jwt:
   secret: JHGP&&*78347ui)@)$&gf___2f9239
   lifetime: 36000000
-
+logging:
+  level:
+    ru.geekbrains.spring.Market.aop: debug

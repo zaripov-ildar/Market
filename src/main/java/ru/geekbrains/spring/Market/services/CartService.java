@@ -3,12 +3,15 @@ package ru.geekbrains.spring.Market.services;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.geekbrains.spring.Market.aop.Timer;
 import ru.geekbrains.spring.Market.dtos.Cart;
 import ru.geekbrains.spring.Market.entities.Product;
 import ru.geekbrains.spring.Market.exceptions.ResourceNotFoundException;
 
+
 @Service
 @RequiredArgsConstructor
+@Timer
 public class CartService {
     private Cart tempCart;
 
@@ -36,3 +39,5 @@ public class CartService {
         tempCart.clear();
     }
 }
+
+
