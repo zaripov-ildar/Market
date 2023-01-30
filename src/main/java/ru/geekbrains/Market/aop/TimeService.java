@@ -25,6 +25,7 @@ public class TimeService {
         String methodName = "Method " + pjp.getSignature().getName();
         return markTime(methodName, pjp);
     }
+
     @Around("classTimer()")
     public Object markClassTime(ProceedingJoinPoint pjp) throws Throwable {
         String className = "Class " + pjp.getTarget().getClass().getSimpleName();
@@ -32,10 +33,17 @@ public class TimeService {
     }
 
     private Object markTime(String name, ProceedingJoinPoint pjp) throws Throwable {
-        long startTime = System.currentTimeMillis();
-        Object proceed = pjp.proceed();
-        Long finishTime = System.currentTimeMillis() - startTime;
-        log.debug("{} time working is {} ms", name, finishTime);
-        return proceed;
+        try {
+            long startTime = System.currentTimeMillis();
+            Object proceed = pjp.proceed();
+            Long finishTime = System.currentTimeMillis() - startTime;
+            log.debug("{} time working is {} ms", name, finishTime);
+            return proceed;
+        } catch (Exception e) {
+            String methodName = pjp.getSignature().getName();
+            String className = pjp.getClass().getName();
+            log.error("Method {} from class {} threw exception {}", methodName, className, e.getMessage());
+            return null;
+        }
     }
 }
