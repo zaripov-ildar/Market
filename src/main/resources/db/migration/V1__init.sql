@@ -15,7 +15,7 @@ create table products
     id          bigserial primary key,
     title       varchar(255),
     price       int,
-    category_id bigserial references categories (id),
+    category_id bigint references categories (id),
     created_at  timestamp default current_timestamp,
     updated_at  timestamp default current_timestamp
 );
@@ -58,5 +58,19 @@ create table users_roles
 insert into users_roles(user_id, role_id)
 values (1, 1),
        (2, 2);
+
+create table orders
+(
+    id      bigserial primary key,
+    user_id bigint references users (id)
+);
+
+create table order_items
+(
+    product_id bigint references products (id),
+    amount     int,
+    order_id   bigint references orders (id)
+);
+
 
 
