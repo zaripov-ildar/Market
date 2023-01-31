@@ -22,7 +22,10 @@ create table products
 insert into products(title, price, category_id)
 values ('Milk', 80, 1),
        ('Bread', 25, 1),
-       ('Cheese', 300, 1);
+       ('Cheese', 300, 1),
+       ('Fender', 98000, 2),
+       ('Ibanez', 25000, 2),
+       ('Ural', 1000, 2);
 
 create table users
 (
@@ -61,15 +64,21 @@ values (1, 1),
 
 create table orders
 (
-    id      bigserial primary key,
-    user_id bigint references users (id)
+    id         bigserial primary key,
+    user_id    bigint references users (id),
+    total_price int,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp
 );
 
 create table order_items
 (
     product_id bigint references products (id),
     amount     int,
-    order_id   bigint references orders (id)
+    price      int,
+    order_id   bigint references orders (id),
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp
 );
 
 

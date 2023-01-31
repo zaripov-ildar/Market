@@ -18,6 +18,7 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         $http.get($scope.path + '/cart')
             .then(function (response) {
                 $scope.cart = response.data;
+                console.log(response.data);
             })
     }
 
@@ -25,8 +26,8 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
         $http({
             url: $scope.path + "/cart/changeAmount",
             method: "GET",
-            params:{
-                productId:productId,
+            params: {
+                productId: productId,
                 delta: delta
             }
         }).then(function () {
@@ -39,13 +40,19 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
                 $scope.loadCart();
             })
     };
-    $scope.clearCart = function (){
+    $scope.clearCart = function () {
         $http.get($scope.path + "/cart/clear")
-            .then(function (){
+            .then(function () {
                 $scope.loadCart();
             })
+    };
+    $scope.makeOrder = function () {
+        $http.get($scope.path + "/cart/order")
+            .then(function (response) {
+                const order = response.data;
+                alert("You've made the  order #" + order.id);
+            })
     }
-
     $scope.loadProducts();
     $scope.loadCart()
 })
