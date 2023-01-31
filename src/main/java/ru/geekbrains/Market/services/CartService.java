@@ -4,7 +4,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.Market.aop.Timer;
-import ru.geekbrains.Market.dtos.Cart;
+import ru.geekbrains.Market.utils.Cart;
 import ru.geekbrains.Market.entities.Product;
 import ru.geekbrains.Market.exceptions.ResourceNotFoundException;
 

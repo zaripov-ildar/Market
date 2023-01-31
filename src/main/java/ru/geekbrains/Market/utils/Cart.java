@@ -1,4 +1,4 @@
-package ru.geekbrains.Market.dtos;
+package ru.geekbrains.Market.utils;
 
 import lombok.Data;
 import ru.geekbrains.Market.entities.Product;
@@ -47,9 +47,11 @@ public class Cart {
 
     public void delete(Long id) {
         map.remove(id);
+        recalculate();
     }
 
     public void clear() {
+        totalPrice = 0;
         map.clear();
     }
 }

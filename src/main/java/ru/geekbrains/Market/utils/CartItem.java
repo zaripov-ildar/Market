@@ -1,4 +1,4 @@
-package ru.geekbrains.Market.dtos;
+package ru.geekbrains.Market.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

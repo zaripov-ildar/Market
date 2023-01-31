@@ -6,12 +6,7 @@ import lombok.Data;
 @Entity
 @Table(name = "roles")
 @Data
-public class Role {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+public class Role extends BaseEntity{
     @Column(name = "name")
     private String name;
 }

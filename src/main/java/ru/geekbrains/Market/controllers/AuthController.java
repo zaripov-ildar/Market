@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.geekbrains.Market.dtos.JwtRequest;
 import ru.geekbrains.Market.dtos.JwtResponse;
-import ru.geekbrains.Market.services.JwtTokenUtil;
+import ru.geekbrains.Market.utils.JwtTokenUtil;
 import ru.geekbrains.Market.services.UserService;
 
 @RestController

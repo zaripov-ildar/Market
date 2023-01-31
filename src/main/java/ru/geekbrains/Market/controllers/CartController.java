@@ -2,7 +2,7 @@ package ru.geekbrains.Market.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.Market.dtos.Cart;
+import ru.geekbrains.Market.utils.Cart;
 import ru.geekbrains.Market.dtos.CartDto;
 import ru.geekbrains.Market.aop.Timer;
 import ru.geekbrains.Market.services.CartService;

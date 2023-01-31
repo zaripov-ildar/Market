@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @Slf4j
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class AllMethodsDebugger {
     @Pointcut("execution (* ru.geekbrains.Market..*(..) ) && !execution (* ru.geekbrains.Market.configs.JwtRequestFilter.*(..)) ")
     public void allMethods(){}

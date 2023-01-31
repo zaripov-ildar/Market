@@ -8,12 +8,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "users")
 @Data
-public class User {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+public class User extends BaseEntity {
     @Column(name = "username")
     private String username;
 
