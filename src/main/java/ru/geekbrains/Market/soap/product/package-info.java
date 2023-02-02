@@ -5,6 +5,6 @@
 // Generated on: 2023.02.02 at 02:03:29 PM YEKT 
 //
 
-@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.zaripov.com/ws/products", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "https://www.zaripov.com/ws/products", elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 
 package ru.geekbrains.Market.soap.product;

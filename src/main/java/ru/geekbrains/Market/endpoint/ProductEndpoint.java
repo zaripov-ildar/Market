@@ -14,18 +14,8 @@ import ru.geekbrains.Market.soap.product.GetAllProductsResponse;
 @RequiredArgsConstructor
 @Slf4j
 public class ProductEndpoint {
-    private final static String NAMESPACE_URI = "http://www.zaripov.com/ws/products";
+    private final static String NAMESPACE_URI = "https://www.zaripov.com/ws/products";
     private final ProductService productService;
-
-    /*
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:f="http://www.zaripov.com/ws/products">
-            <soapenv:Header/>
-            <soapenv:Body>
-                <f:getAllProductsRequest/>
-            </soapenv:Body>
-        </soapenv:Envelope>
-
-     */
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllProductsRequest")
     @ResponsePayload

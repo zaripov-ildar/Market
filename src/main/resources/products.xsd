@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xs:schema
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:tns="http://www.zaripov.com/ws/products"
-        targetNamespace="http://www.zaripov.com/ws/products"
+        xmlns:tns="https://www.zaripov.com/ws/products"
+        targetNamespace="https://www.zaripov.com/ws/products"
         elementFormDefault="qualified">
 
 
