@@ -1,4 +1,8 @@
-angular.module('app', []).controller('indexController', function ($scope, $http) {
+var app = angular.module('app', ['ngRoute']);
+
+app.config(function ($routProvider))
+
+var main = angular.module('main', []).controller('indexController', function ($scope, $http) {
     $scope.path = 'http://localhost:8189/market/api/v1'
 
     $scope.loadProducts = function () {
