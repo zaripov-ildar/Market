@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.Market.aop.Timer;
 import ru.geekbrains.Market.dtos.Cart;
-import ru.geekbrains.Market.entities.Product;
+import ru.geekbrains.Market.entities.ProductEntity;
 import ru.geekbrains.Market.exceptions.ResourceNotFoundException;
 
 
@@ -27,8 +27,8 @@ public class CartService {
     }
 
     public void changeAmount(Long productId, int delta) {
-        Product product = productService.findById(productId).orElseThrow(() -> new ResourceNotFoundException(String.format("Can't find product (id:%d) to put to the cart", productId)));
-        tempCart.changeAmount(product, delta);
+        ProductEntity productEntity = productService.findById(productId).orElseThrow(() -> new ResourceNotFoundException(String.format("Can't find product (id:%d) to put to the cart", productId)));
+        tempCart.changeAmount(productEntity, delta);
     }
 
     public void delete(Long id) {

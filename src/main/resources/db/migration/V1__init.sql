@@ -19,19 +19,19 @@ insert into users (username, password)
 values ('Kirk', '$2a$12$I1xPezUlvzjBF7wdgiFsFOkpTUBLlIZ0BznV3oU2UAk0LRaZQe2MW'),
        ('Pike', '$2a$12$I1xPezUlvzjBF7wdgiFsFOkpTUBLlIZ0BznV3oU2UAk0LRaZQe2MW');
 
-create table roles
+create table roleEntities
 (
     id   bigserial primary key,
     name varchar(50)
 );
-insert into roles(name)
+insert into roleEntities(name)
 values ('ROLE_ADMIN'),
        ('ROLE_USER');
 
 create table users_roles
 (
     user_id bigint not null references users (id),
-    role_id bigint references roles (id),
+    role_id bigint references roleEntities (id),
     primary key (user_id, role_id)
 );
 insert into users_roles(user_id, role_id)

@@ -26,12 +26,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="product in productList">
-            <td>{{product.id}}</td>
-            <td>{{product.title}}</td>
-            <td>{{product.price}}</td>
+        <tr ng-repeat="productEntity in productList">
+            <td>{{productEntity.id}}</td>
+            <td>{{productEntity.title}}</td>
+            <td>{{productEntity.price}}</td>
             <td>
-                <button type="button" class="btn btn-primary" ng-click="changeAmount(product.id, 1)">Add to the cart
+                <button type="button" class="btn btn-primary" ng-click="changeAmount(productEntity.id, 1)">Add to the cart
                 </button>
             </td>
         </tr>
