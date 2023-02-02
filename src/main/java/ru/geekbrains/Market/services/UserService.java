@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.Market.entities.Role;
-import ru.geekbrains.Market.entities.User;
+import ru.geekbrains.Market.entities.RoleEntity;
+import ru.geekbrains.Market.entities.UserEntity;
 import ru.geekbrains.Market.repositories.UserRepository;
 
 import java.util.Collection;
@@ -24,21 +24,21 @@ public class UserService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUserName(username).orElseThrow(()->new UsernameNotFoundException(String.format("User %s not found", username)));
+        UserEntity userEntity = findByUserName(username).orElseThrow(()->new UsernameNotFoundException(String.format("User %s not found", username)));
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                mapRolesToAuthorities(user.getRoles())
+                userEntity.getUsername(),
+                userEntity.getPassword(),
+                mapRolesToAuthorities(userEntity.getRoleEntities())
         );
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<RoleEntity> roleEntities) {
+        return roleEntities.stream()
+                .map(roleEntity -> new SimpleGrantedAuthority(roleEntity.getName()))
                 .toList();
     }
 
-    private Optional<User> findByUserName(String username) {
+    private Optional<UserEntity> findByUserName(String username) {
         return userRepository.findByUsername(username);
     }
 

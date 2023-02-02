@@ -1,7 +1,7 @@
 package ru.geekbrains.Market.dtos;
 
 import lombok.Data;
-import ru.geekbrains.Market.entities.Product;
+import ru.geekbrains.Market.entities.ProductEntity;
 
 import java.util.*;
 
@@ -15,16 +15,16 @@ public class Cart {
         map = new HashMap<>();
     }
 
-    public void changeAmount(Product product, int i) {
-        long id = product.getId();
-        addToCart(product, i, id);
+    public void changeAmount(ProductEntity productEntity, int i) {
+        long id = productEntity.getId();
+        addToCart(productEntity, i, id);
         deleteIfAmountLessOrEqualZero(id);
         recalculate();
     }
 
-    private void addToCart(Product product, int i, long id) {
+    private void addToCart(ProductEntity productEntity, int i, long id) {
         if (!map.containsKey(id)) {
-            map.put(id, new CartItem(id, product.getTitle(), 1, product.getPrice(), product.getPrice()));
+            map.put(id, new CartItem(id, productEntity.getTitle(), 1, productEntity.getPrice(), productEntity.getPrice()));
         } else {
             map.get(id).changeAmount(i);
         }
